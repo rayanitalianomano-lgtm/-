@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOT PAGER — بيجر النقاط</title>
+<style>
+:root{--bg:#101414;--panel:#1b2220;--line:#35413c;--lime:#c8ff59;--muted:#9ba9a0;--white:#f2f7f1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#26312b,#101414 60%);color:var(--white);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:980px;margin:auto;padding:24px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.logo{width:52px;height:52px;border:2px solid var(--lime);border-radius:14px;display:grid;place-items:center;color:var(--lime);font-size:25px;letter-spacing:4px}.brand h1{font-size:22px;margin:0}.brand p{color:var(--muted);margin:5px 0 0;font-size:13px}
+.grid{display:grid;grid-template-columns:320px 1fr;gap:18px}.card{background:#171e1bde;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 12px 40px #0003}h2{font-size:16px;margin:0 0 14px}.label{display:block;font-size:12px;color:var(--muted);margin:12px 0 6px}input,select,textarea{width:100%;background:#0e1311;border:1px solid var(--line);border-radius:10px;color:var(--white);padding:12px;font:inherit;outline:none}input:focus,select:focus{border-color:var(--lime)}button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:11px 14px;font-weight:bold}.primary{background:var(--lime);color:#18200f}.secondary{background:#2a3530;color:var(--white);border:1px solid #425048}.danger{background:#442a2a;color:#ffdada;border:1px solid #754444}.row{display:flex;gap:8px}.row>*{flex:1}.hint{font-size:12px;color:var(--muted);line-height:1.7}.pager{background:#080c0b;border:2px solid #4c5b51;border-radius:22px;padding:18px;max-width:390px;margin:0 auto 18px}.screen{min-height:130px;border:1px solid #53654e;border-radius:12px;background:#152016;padding:14px;color:var(--lime);font-family:monospace;box-shadow:inset 0 0 20px #0007}.screen small{display:block;color:#82957a;font-family:Tahoma;margin-bottom:10px}.dots{font-size:32px;letter-spacing:8px;word-break:break-word;min-height:44px}.screen .status{font-size:12px;color:#8eaa83;margin-top:8px}.sendbox{display:flex;gap:8px;margin-top:12px}.sendbox input{flex:1}.sendbox button{white-space:nowrap}.contacts{display:flex;flex-direction:column;gap:8px}.contact{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#111714;border:1px solid var(--line);border-radius:12px;padding:10px}.contact strong{display:block;font-size:14px}.contact small{color:var(--muted)}.contact .actions{display:flex;gap:5px}.contact button{padding:8px;font-size:12px}.empty{color:var(--muted);font-size:13px;text-align:center;padding:18px}.inbox-item{padding:12px;border-bottom:1px solid var(--line)}.inbox-item:last-child{border-bottom:0}.inbox-item .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-bottom:8px}.inbox-item .pattern{font-family:monospace;color:var(--lime);font-size:24px;letter-spacing:5px}.inbox-item p{margin:5px 0 0;color:#d6ded7;font-size:13px}.foot{color:var(--muted);font-size:11px;text-align:center;margin-top:18px;line-height:1.7}.badge{display:inline-block;color:var(--lime);border:1px solid #607b3c;border-radius:99px;padding:4px 8px;font-size:11px;margin-bottom:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{padding:14px}.row{flex-direction:column}}
+</style></head>
+<body><main class="wrap">
+<header class="brand"><div class="logo">••</div><div><h1>DOT PAGER</h1><p>بيجر النقاط — تواصل بإشارات صوتية قصيرة</p></div></header>
+<div class="grid">
+<aside class="card">
+<div class="badge">نموذج تجريبي محلي</div>
+<h2>ملف البيجر</h2>
+<label class="label">اسمك</label><input id="myName" maxlength="24" placeholder="مثلاً: Simo">
+<label class="label">رقم البيجر الخاص بك</label><input id="myId" maxlength="16" placeholder="مثلاً: 2048">
+<button class="primary" id="saveProfile" style="width:100%;margin-top:10px">حفظ بياناتي</button>
+<hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+<h2>إضافة شخص إلى قائمة البيجر</h2>
+<label class="label">اسم الشخص</label><input id="friendName" maxlength="24" placeholder="اسم الصديق">
+<label class="label">رقم البيجر</label><input id="friendId" maxlength="16" placeholder="رقم البيجر">
+<button class="primary" id="addFriend" style="width:100%;margin-top:10px">＋ إضافة شخص</button>
+<p class="hint">في النسخة الحقيقية، صاحب الموقع/المشرف يحتاج لوحة إدارة لإضافة المستخدمين وربط أرقامهم. هذه النسخة تحفظ الأسماء على هذا الجهاز فقط.</p>
+</aside>
+<section>
+<div class="card" style="margin-bottom:18px">
+<h2>جهاز البيجر</h2>
+<div class="pager"><div class="screen"><small id="screenTitle">DOT PAGER / READY</small><div class="dots" id="dots">•••</div><div class="status" id="screenStatus">جاهز للإرسال</div></div>
+<div class="sendbox"><select id="target"><option value="">اختر شخصاً</option></select><button class="primary" id="send">إرسال نغمة</button></div>
+<div class="row" style="margin-top:9px"><button class="secondary" id="play">▶ تشغيل النغمة</button><button class="secondary" id="test">اختبار</button></div></div>
+<p class="hint">الإشارة عبارة عن نقاط ونغمات فقط، بدون نص رسالة. اختر الشخص ثم أرسل. الصوت يحتاج ضغط زر من المستخدم حتى يعمل في المتصفح.</p>
+</div>
+<div class="card" style="margin-bottom:18px"><h2>الأشخاص المضافون</h2><div id="contacts" class="contacts"><div class="empty">ما أضفت أحداً بعد.</div></div></div>
+<div class="card"><h2>الإشارات الواردة على هذا الجهاز</h2><div id="inbox"><div class="empty">لا توجد إشارات حتى الآن.</div></div></div>
+</section></div>
+<div class="foot">تنبيه: هذا تصميم واجهة يعمل محلياً للتجربة، وليس موقعاً متصلاً بالإنترنت. الإرسال بين أشخاص مختلفين يحتاج خادماً وقاعدة بيانات وتسجيل دخول.</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let friends=JSON.parse(localStorage.getItem('dp_friends')||'[]');
+let inbox=JSON.parse(localStorage.getItem('dp_inbox')||'[]');
+let profile=JSON.parse(localStorage.getItem('dp_profile')||'{"name":"","id":""}');
+$('myName').value=profile.name;$('myId').value=profile.id;
+function persist(){localStorage.setItem('dp_friends',JSON.stringify(friends));localStorage.setItem('dp_inbox',JSON.stringify(inbox));}
+function renderFriends(){
+ $('contacts').innerHTML='';$('target').innerHTML='<option value="">اختر شخصاً</option>';
+ if(!friends.length)$('contacts').innerHTML='<div class="empty">ما أضفت أحداً بعد.</div>';
+ friends.forEach((f,i)=>{let d=document.createElement('div');d.className='contact';d.innerHTML=`<div><strong>${esc(f.name)}</strong><small>بيجر #${esc(f.id)}</small></div><div class="actions"><button class="secondary" data-ping="${i}">نداء</button><button class="danger" data-del="${i}">حذف</button></div>`;$('contacts').appendChild(d);
+ let o=document.createElement('option');o.value=i;o.textContent=f.name+' (#'+f.id+')';$('target').appendChild(o);});
+ $('contacts').querySelectorAll('[data-ping]').forEach(b=>b.onclick=()=>{ $('target').value=b.dataset.ping; sendPing();});
+ $('contacts').querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{friends.splice(+b.dataset.del,1);persist();renderFriends();});
+}
+function renderInbox(){ $('inbox').innerHTML='';if(!inbox.length){$('inbox').innerHTML='<div class="empty">لا توجد إشارات حتى الآن.</div>';return;}
+ inbox.slice().reverse().forEach(m=>{let d=document.createElement('div');d.className='inbox-item';d.innerHTML=`<div class="meta"><span>من: ${esc(m.from)}</span><span>${new Date(m.time).toLocaleString()}</span></div><div class="pattern">${esc(m.pattern)}</div><p>نغمة بيجر واردة</p>`;$('inbox').appendChild(d);});}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+$('saveProfile').onclick=()=>{profile={name:$('myName').value.trim(),id:$('myId').value.trim()};localStorage.setItem('dp_profile',JSON.stringify(profile));$('screenTitle').textContent='PROFILE SAVED';$('screenStatus').textContent='تم حفظ بيانات البيجر';};
+$('addFriend').onclick=()=>{let name=$('friendName').value.trim(),id=$('friendId').value.trim();if(!name||!id){alert('اكتب اسم الشخص ورقم البيجر.');return;}if(friends.some(f=>f.id===id)){alert('رقم البيجر موجود بالفعل.');return;}friends.push({name,id});$('friendName').value='';$('friendId').value='';persist();renderFriends();};
+function tone(){try{let C=window.AudioContext||window.webkitAudioContext;let c=new C();[0,180,360].forEach((delay,i)=>{let o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=880;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.0001,c.currentTime+delay/1000);g.gain.exponentialRampToValueAtTime(.18,c.currentTime+delay/1000+.02);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+delay/1000+.11);o.start(c.currentTime+delay/1000);o.stop(c.currentTime+delay/1000+.13);});setTimeout(()=>c.close(),800);}catch(e){alert('تعذر تشغيل الصوت في هذا المتصفح.');}}
+function sendPing(){let i=$('target').value;if(i===''){alert('اختر شخصاً أولاً.');return;}let f=friends[+i];$('dots').textContent='• • •';$('screenTitle').textContent='PING SENT';$('screenStatus').textContent='تم إرسال نغمة تجريبية إلى '+f.name;tone();inbox.push({from:'أنت → '+f.name,pattern:'• • •',time:Date.now()});if(inbox.length>30)inbox=inbox.slice(-30);persist();renderInbox();}
+$('send').onclick=sendPing;$('play').onclick=tone;$('test').onclick=()=>{ $('dots').textContent='• • •';$('screenStatus').textContent='اختبار النغمة';tone();};
+renderFriends();renderInbox();
+</script></body></html>
